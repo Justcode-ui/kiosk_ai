@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Back - KioskAI</title>
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        try {
+            const token = localStorage.getItem('authToken');
+            if (token && token.split('.').length === 3) {
+                window.location.href = 'index.html';
+            }
+        } catch (e) { }
+    </script>
+</head>
+
+<body class="auth-page">
+    <!-- Floating Background Elements -->
+    <div class="background-animation">
+        <div class="floating-orb orb-1"></div>
+        <div class="floating-orb orb-2"></div>
+        <div class="floating-orb orb-3"></div>
+        <div class="floating-orb orb-4"></div>
+        <div class="mesh-gradient"></div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="auth-container">
+        <!-- Brand Header -->
+        <div class="auth-brand">
+            <img src="kiosk-icon.svg" alt="KioskAI" style="width: 48px; height: 48px; margin-right: 12px;">
+            <h1 class="brand-name">KioskAI</h1>
+        </div>
+
+        <!-- Auth Card -->
+        <div class="auth-card">
+            <div class="auth-header">
+                <h2 class="auth-title">Welcome Back to Kiosk AI</h2>
+                <p class="auth-subtitle">Your AI agent is ready to serve customers 24/7</p>
+            </div>
+
+            <form class="auth-form" id="loginForm">
+                <!-- Email -->
+                <div class="form-group">
+                    <label for="email" class="form-label">Email Address</label>
+                    <div class="input-wrapper">
+                        <svg class="input-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path
+                                d="M2 5C2 3.89543 2.89543 3 4 3H16C17.1046 3 18 3.89543 18 5V15C18 16.1046 17.1046 17 16 17H4C2.89543 17 2 16.1046 2 15V5Z"
+                                fill="currentColor" opacity="0.3" />
+                            <path d="M2 5L10 10L18 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                        <input type="email" id="email" name="email" class="form-input" placeholder="you@business.com"
+                            required autofocus>
+                    </div>
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                    <div class="label-row">
+                        <label for="password" class="form-label">Password</label>
+                        <a href="#" class="forgot-link">Forgot password?</a>
+                    </div>
+                    <div class="input-wrapper">
+                        <svg class="input-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <rect x="3" y="8" width="14" height="10" rx="2" fill="currentColor" opacity="0.3" />
+                            <path d="M6 8V6C6 3.79086 7.79086 2 10 2C12.2091 2 14 3.79086 14 6V8" stroke="currentColor"
+                                stroke-width="2" />
+                        </svg>
+                        <input type="password" id="password" name="password" class="form-input"
+                            placeholder="Enter your password" required>
+                        <button type="button" class="toggle-password" onclick="togglePassword('password')">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path
+                                    d="M10 7C8.34315 7 7 8.34315 7 10C7 11.6569 8.34315 13 10 13C11.6569 13 13 11.6569 13 10C13 8.34315 11.6569 7 10 7Z"
+                                    fill="currentColor" opacity="0.3" />
+                                <path d="M10 3C5 3 1 10 1 10C1 10 5 17 10 17C15 17 19 10 19 10C19 10 15 3 10 3Z"
+                                    stroke="currentColor" stroke-width="2" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Remember Me -->
+                <div class="form-group-inline">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="remember" class="checkbox-input">
+                        <span class="checkbox-custom"></span>
+                        <span class="checkbox-text">Remember me for 30 days</span>
+                    </label>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn-auth-primary">
+                    <span>Log In</span>
+                    <svg class="btn-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+            </form>
+
+            <!-- Footer Link -->
+            <div class="auth-footer">
+                <p>Don't have an account? <a href="signup.html" class="auth-link">Create an account</a></p>
+            </div>
+        </div>
+
+        <!-- Back to Home -->
+        <div class="back-link">
+            <a href="landing.html">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+                <span>Back to home</span>
+            </a>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KioskAI - AI-Powered Customer Communication</title>
+    <link rel="stylesheet" href="css/landing.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="kiosk-icon.svg">
+    <script>
+        // Check if user is already logged in and redirect to dashboard
+        try {
+            const token = localStorage.getItem('authToken');
+            if (token && token.split('.').length === 3) {
+                console.log('Valid token found, redirecting to dashboard...');
+                window.location.href = 'index.html';
+            }
+        } catch (e) {
+            console.error('Redirection check failed:', e);
+        }
+    </script>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="kiosk-icon.svg" alt="KioskAI Logo" style="width: 32px; height: 32px; margin-right: 0.5rem;">
+                <span class="brand-text">KioskAI</span>
+            </div>
+            <div class="nav-links">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#how-it-works" class="nav-link">How It Works</a>
+                <a href="#demo" class="nav-link">Demo</a>
+                <a href="#impact" class="nav-link">Impact</a>
+                <a href="login.html" class="nav-link" style="margin-right: 1rem;">Login</a>
+                <a href="signup.html" class="nav-cta">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+        </div>
+
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                <span>AI Agent Powered by LLaMA 4 Scout</span>
+            </div>
+
+            <h1 class="hero-title">
+                Never Miss a Customer
+                <span class="gradient-text">Ever Again</span>
+            </h1>
+
+            <p class="hero-subtitle">
+                Your AI customer service agent responds 24/7 via Telegram.
+                <br>Powered by LLaMA 4 Scout for intelligent, context-aware conversations.
+            </p>
+
+            <div class="hero-cta">
+                <a href="signup.html" class="btn-primary-large">
+                    <span>Start Your Journey</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </a>
+                <button class="btn-secondary-large" onclick="scrollToDemo()">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2" />
+                        <path d="M8 7L13 10L8 13V7Z" fill="currentColor" />
+                    </svg>
+                    <span>Watch Demo</span>
+                </button>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="99">0</div>
+                    <div class="stat-label">Response Rate</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="24">0</div>
+                    <div class="stat-label">Hours Active</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="2">0</div>
+                    <div class="stat-label">Platforms</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating AI Orb -->
+        <div class="ai-orb-container">
+            <div class="ai-orb">
+                <div class="orb-core"></div>
+                <div class="orb-ring ring-1"></div>
+                <div class="orb-ring ring-2"></div>
+                <div class="orb-ring ring-3"></div>
+                <div class="orb-particles">
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-badge">Powerful Features</span>
+                <h2 class="section-title">Everything You Need to Scale</h2>
+                <p class="section-subtitle">Built for modern businesses that value customer relationships</p>
+            </div>
+
+            <div class="features-grid">
+                <!-- Feature 1 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <path d="M16 4L4 10L16 16L28 10L16 4Z" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M4 22L16 28L28 22" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M4 16L16 22L28 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">24/7 Availability</h3>
+                    <p class="feature-description">Manage Telegram notifications from one unified
+                        dashboard powered by AI.</p>
+                    <div class="feature-glow"></div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <circle cx="16" cy="16" r="12" stroke="currentColor" stroke-width="2" />
+                            <path d="M16 8V16L20 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">24/7 AI Agent</h3>
+                    <p class="feature-description">Your AI agent powered by LLaMA 4 Scout handles customer
+                        inquiries instantly.</p>
+                    <div class="feature-glow"></div>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <rect x="4" y="8" width="24" height="16" rx="2" stroke="currentColor" stroke-width="2" />
+                            <path d="M4 12H28" stroke="currentColor" stroke-width="2" />
+                            <circle cx="10" cy="18" r="1" fill="currentColor" />
+                            <circle cx="16" cy="18" r="1" fill="currentColor" />
+                            <circle cx="22" cy="18" r="1" fill="currentColor" />
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Smart Conversations</h3>
+                    <p class="feature-description">AI remembers context and customer history for personalized responses.
+                    </p>
+                    <div class="feature-glow"></div>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <path d="M16 4C9.4 4 4 9.4 4 16C4 22.6 9.4 28 16 28C22.6 28 28 22.6 28 16"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                            <path d="M28 8V16H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Auto Follow-ups</h3>
+                    <p class="feature-description">Never lose a lead with intelligent automated reminders.</p>
+                    <div class="feature-glow"></div>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <path d="M4 16H28" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                            <path d="M4 8H28" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                            <path d="M4 24H28" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                            <circle cx="8" cy="16" r="2" fill="currentColor" />
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Customer Insights</h3>
+                    <p class="feature-description">Track conversations, orders, and customer preferences automatically.
+                    </p>
+                    <div class="feature-glow"></div>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <path d="M16 4L4 10V18C4 24 16 28 16 28C16 28 28 24 28 18V10L16 4Z" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M12 16L15 19L21 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Secure & Reliable</h3>
+                    <p class="feature-description">Enterprise-grade security with 99.9% uptime guarantee.</p>
+                    <div class="feature-glow"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive AI Demo Section -->
+    <section class="demo-section" id="demo">
+        <div class="section-container">
+            <div class="demo-grid">
+                <div class="demo-visual">
+                    <div class="neural-network">
+                        <svg class="network-svg" viewBox="0 0 400 400">
+                            <!-- Nodes -->
+                            <circle class="node node-input" cx="50" cy="100" r="8" />
+                            <circle class="node node-input" cx="50" cy="200" r="8" />
+                            <circle class="node node-input" cx="50" cy="300" r="8" />
+
+                            <circle class="node node-hidden" cx="200" cy="80" r="8" />
+                            <circle class="node node-hidden" cx="200" cy="160" r="8" />
+                            <circle class="node node-hidden" cx="200" cy="240" r="8" />
+                            <circle class="node node-hidden" cx="200" cy="320" r="8" />
+
+                            <circle class="node node-output" cx="350" cy="150" r="8" />
+                            <circle class="node node-output" cx="350" cy="250" r="8" />
+
+                            <!-- Connections -->
+                            <line class="connection" x1="50" y1="100" x2="200" y2="80" />
+                            <line class="connection" x1="50" y1="100" x2="200" y2="160" />
+                            <line class="connection" x1="50" y1="200" x2="200" y2="160" />
+                            <line class="connection" x1="50" y1="200" x2="200" y2="240" />
+                            <line class="connection" x1="50" y1="300" x2="200" y2="240" />
+                            <line class="connection" x1="50" y1="300" x2="200" y2="320" />
+
+                            <line class="connection" x1="200" y1="80" x2="350" y2="150" />
+                            <line class="connection" x1="200" y1="160" x2="350" y2="150" />
+                            <line class="connection" x1="200" y1="240" x2="350" y2="250" />
+                            <line class="connection" x1="200" y1="320" x2="350" y2="250" />
+                        </svg>
+                        <div class="network-pulse"></div>
+                    </div>
+                </div>
+
+                <div class="section-header">
+                    <span class="section-badge">See It In Action</span>
+                    <h2 class="section-title">AI Agent That Understands Context</h2>
+                    <p class="demo-description">
+                        Watch how your KioskAI agent powered by LLaMA 4 Scout handles real customer conversations
+                        with natural,
+                        context-aware responses.
+                    </p>
+
+                    <div class="chat-demo">
+                        <div class="chat-message customer">
+                            <div class="message-avatar">👤</div>
+                            <div class="message-bubble">
+                                <p>Hi! Do you have the blue sneakers in size 42?</p>
+                                <span class="message-time">2:34 PM</span>
+                            </div>
+                        </div>
+
+                        <div class="chat-message ai typing">
+                            <div class="message-avatar ai-avatar">
+                                <div class="ai-icon"></div>
+                            </div>
+                            <div class="message-bubble">
+                                <div class="typing-indicator">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="chat-message ai hidden">
+                            <div class="message-avatar ai-avatar">
+                                <div class="ai-icon"></div>
+                            </div>
+                            <div class="message-bubble">
+                                <p>Yes! We have the Nike Air Max in blue, size 42 in stock. It's ₦45,000. Would you like
+                                    me to reserve it for you?</p>
+                                <span class="message-time">2:34 PM</span>
+                            </div>
+                        </div>
+
+                        <div class="chat-message customer hidden">
+                            <div class="message-avatar">👤</div>
+                            <div class="message-bubble">
+                                <p>Perfect! Yes please reserve it. Can I pay now?</p>
+                                <span class="message-time">2:35 PM</span>
+                            </div>
+                        </div>
+
+                        <div class="chat-message ai hidden">
+                            <div class="message-avatar ai-avatar">
+                                <div class="ai-icon"></div>
+                            </div>
+                            <div class="message-bubble">
+                                <p>Great! order confirmed. Please transfer ₦45,000 to:</p>
+                                <div class="payment-card">
+                                    <div class="payment-icon">🏦</div>
+                                    <div class="payment-details">
+                                        <div class="payment-amount">₦45,000</div>
+                                        <div class="payment-item">GTBank - 0123456789</div>
+                                        <div class="payment-item" style="font-size: 0.8em; opacity: 0.8;">Kiosk Ventures
+                                        </div>
+                                    </div>
+                                </div>
+                                <p style="margin-top: 0.5rem; font-size: 0.9em;">Please send the payment receipt here
+                                    when done so I can process your delivery!</p>
+                                <span class="message-time">2:35 PM</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Timeline -->
+    <section class="timeline-section" id="how-it-works">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-badge">Simple Process</span>
+                <h2 class="section-title">How It Works</h2>
+                <p class="section-subtitle">Get started in minutes, not days</p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item" data-step="1">
+                    <div class="timeline-marker">
+                        <div class="marker-number">1</div>
+                        <div class="marker-glow"></div>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Connect Your Channels</h3>
+                        <p>Link your WhatsApp Business and SMS in minutes.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-step="2">
+                    <div class="timeline-marker">
+                        <div class="marker-number">2</div>
+                        <div class="marker-glow"></div>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Train Your AI Agent</h3>
+                        <p>Customize your AI agent with business info, products, and your brand's tone of voice.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-step="3">
+                    <div class="timeline-marker">
+                        <div class="marker-number">3</div>
+                        <div class="marker-glow"></div>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Go Live</h3>
+                        <p>Activate your AI agent and watch it handle customer conversations 24/7.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-step="4">
+                    <div class="timeline-marker">
+                        <div class="marker-number">4</div>
+                        <div class="marker-glow"></div>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Monitor & Optimize</h3>
+                        <p>Track performance, review conversations, and improve over time.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section class="impact-section" id="impact">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-badge">Real Results</span>
+                <h2 class="section-title">The Impact</h2>
+                <p class="section-subtitle">Numbers that matter to your business</p>
+            </div>
+
+            <div class="impact-grid">
+                <div class="impact-card">
+                    <div class="impact-icon">⚡</div>
+                    <div class="impact-number" data-count="85">0</div>
+                    <div class="impact-label">Faster Response Time</div>
+                    <div class="impact-description">Respond to customers instantly, not hours later</div>
+                </div>
+
+                <div class="impact-card">
+                    <div class="impact-icon">📈</div>
+                    <div class="impact-number" data-count="3">0</div>
+                    <div class="impact-label">More Conversions</div>
+                    <div class="impact-description">Turn more inquiries into actual sales</div>
+                </div>
+
+                <div class="impact-card">
+                    <div class="impact-icon">💰</div>
+                    <div class="impact-number" data-count="60">0</div>
+                    <div class="impact-label">Cost Reduction</div>
+                    <div class="impact-description">Save on customer support overhead</div>
+                </div>
+
+                <div class="impact-card">
+                    <div class="impact-icon">⭐</div>
+                    <div class="impact-number" data-count="95">0</div>
+                    <div class="impact-label">Customer Satisfaction</div>
+                    <div class="impact-description">Happier customers, better reviews</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-container">
+            <div class="cta-glow"></div>
+            <h2 class="cta-title">Ready to Transform Your Customer Communication?</h2>
+            <p class="cta-subtitle">Let your AI agent handle customer inquiries 24/7</p>
+            <div class="cta-buttons">
+                <a href="signup.html" class="btn-cta-primary">
+                    <span>Start Your Journey</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </a>
+                <a href="#demo" class="btn-cta-secondary">Try out the Demo</a>
+            </div>
+            <p class="cta-note">Get started in minutes</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <img src="kiosk-icon.svg" alt="KioskAI Logo"
+                    style="width: 32px; height: 32px; margin-right: 0.5rem; vertical-align: middle;">
+                <span class="brand-text">KioskAI</span>
+                <p class="footer-tagline">AI agent powered by LLaMA 4 Scout for modern businesses</p>
+            </div>
+
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>Product</h4>
+                    <a href="#features">Features</a>
+                    <a href="#how-it-works">How It Works</a>
+                    <a href="#impact">Impact</a>
+                    <a href="index.html">Dashboard</a>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <a href="#">About</a>
+                    <a href="#">Blog</a>
+                    <a href="#">Careers</a>
+                    <a href="#">Contact</a>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <a href="#">Documentation</a>
+                    <a href="#">API</a>
+                    <a href="#">Support</a>
+                    <a href="#">Status</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 KioskAI.</p>
+            <div class="footer-legal">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/landing.js"></script>
+</body>
+
+</html>

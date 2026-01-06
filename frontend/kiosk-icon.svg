@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120" height="120" viewBox="0 0 120 120"
+     xmlns="http://www.w3.org/2000/svg"
+     role="img"
+     aria-label="Kiosk AI icon">
+
+  <defs>
+    <!-- Teal gradient for AI feel -->
+    <linearGradient id="tealGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2FE3C2"/>
+      <stop offset="100%" stop-color="#0FB9B1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Main kiosk body -->
+  <rect x="28" y="16"
+        width="64" height="88"
+        rx="16"
+        fill="url(#tealGradient)"/>
+
+  <!-- Screen -->
+  <rect x="40" y="30"
+        width="40" height="26"
+        rx="6"
+        fill="#FFFFFF"/>
+
+  <!-- AI assistant dots -->
+  <circle cx="46" cy="74" r="3" fill="#FFFFFF"/>
+  <circle cx="60" cy="74" r="3" fill="#FFFFFF"/>
+  <circle cx="74" cy="74" r="3" fill="#FFFFFF"/>
+
+  <!-- AI signal wave -->
+  <path d="M96 36
+           C108 48, 108 72, 96 84"
+        fill="none"
+        stroke="#2FE3C2"
+        stroke-width="4"
+        stroke-linecap="round"/>
+</svg>

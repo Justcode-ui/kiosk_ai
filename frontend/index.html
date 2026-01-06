@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="KioskAI - AI-powered customer communication platform for medium-scale businesses">
+    <meta name="keywords" content="AI, customer service, Telegram automation, business communication">
+    <title>KioskAI - AI Customer Communication Platform</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="icon" type="image/svg+xml" href="kiosk-icon.svg">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+    <!-- MOBILE MENU TOGGLE (FOR RESPONSIVENESS) -->
+    <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Open menu">
+        ☰
+    </button>
+
+    <!-- Main Dashboard -->
+    <div id="dashboard">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="kiosk-icon.svg" alt="KioskAI Logo"
+                    style="width: 32px; height: 32px; vertical-align: middle; margin-right: 8px;">
+                <h2 style="display: inline; vertical-align: middle;">KioskAI</h2>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-page="overview">
+                    <span class="nav-icon">📈</span>
+                    <span>Overview</span>
+                </a>
+                <a href="#" class="nav-item" data-page="customers">
+                    <span class="nav-icon">👤</span>
+                    <span>Customers</span>
+                </a>
+                <a href="#" class="nav-item" data-page="messages">
+                    <span class="nav-icon">🛰️</span>
+                    <span>Messages</span>
+                </a>
+                <a href="#" class="nav-item" data-page="orders">
+                    <span class="nav-icon">💠</span>
+                    <span>Orders</span>
+                </a>
+                <a href="#" class="nav-item" data-page="details">
+                    <span class="nav-icon">⚛️</span>
+                    <span>Details</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button id="logout-btn" class="btn-secondary">Logout</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+
+            <!-- Overview Page -->
+            <div id="page-overview" class="page active">
+                <header class="page-header">
+                    <h1>Dashboard Overview</h1>
+                    <p>Welcome back! Here's what's happening with your business.</p>
+                </header>
+
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-icon">👥</div>
+                        <div class="metric-content">
+                            <h3 id="metric-customers">0</h3>
+                            <p>Total Customers</p>
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-icon">💬</div>
+                        <div class="metric-content">
+                            <h3 id="metric-conversations">0</h3>
+                            <p>Active Conversations</p>
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-icon">📦</div>
+                        <div class="metric-content">
+                            <h3 id="metric-orders">0</h3>
+                            <p>Total Orders</p>
+                        </div>
+                    </div>
+
+                    <div class="metric-card highlight">
+                        <div class="metric-icon">💰</div>
+                        <div class="metric-content">
+                            <h3 id="metric-revenue">₦0</h3>
+                            <p>Total Revenue</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="insights-section">
+                    <div class="insight-card">
+                        <h3>Quick Insights</h3>
+                        <div class="insight-item">
+                            <span class="insight-label">Average Response Time</span>
+                            <span class="insight-value" id="insight-response-time">45s</span>
+                        </div>
+                        <div class="insight-item">
+                            <span class="insight-label">Leads This Week</span>
+                            <span class="insight-value" id="insight-leads">0</span>
+                        </div>
+                        <div class="insight-item">
+                            <span class="insight-label">Customers Needing Attention</span>
+                            <span class="insight-value attention" id="insight-attention">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Customers Page -->
+            <div id="page-customers" class="page">
+                <header class="page-header">
+                    <h1>Customers</h1>
+                    <button class="btn-primary" id="add-customer-btn">+ Add Customer</button>
+                </header>
+
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Orders</th>
+                                <th>Total Spent</th>
+                                <th>Last Contact</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="customers-table-body">
+                            <!-- Populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Messages Page -->
+            <div id="page-messages" class="page">
+                <header class="page-header">
+                    <h1>Messages</h1>
+                </header>
+
+                <div class="messages-container">
+                    <div class="conversations-list" id="conversations-list">
+                        <!-- Populated by JavaScript -->
+                    </div>
+
+                    <div class="message-thread" id="message-thread">
+                        <div class="empty-state">
+                            <p>Select a conversation to view messages</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Orders Page -->
+            <div id="page-orders" class="page">
+                <header class="page-header">
+                    <h1>Orders</h1>
+                    <button class="btn-primary" id="create-order-btn">+ Create Order</button>
+                </header>
+
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Order #</th>
+                                <th>Customer</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="orders-table-body">
+                            <!-- Populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Details Page -->
+            <div id="page-details" class="page">
+                <header class="page-header" style="display: none;"> <!-- Hidden header in card view -->
+                    <h1>Business Details</h1>
+                </header>
+
+                <!-- Profile View (Card) -->
+                <div id="profile-view" class="settings-section profile-card">
+
+                    <!-- Header: Avatar + Name + Edit -->
+                    <div class="profile-header">
+                        <div class="profile-avatar">
+                            👤
+                        </div>
+                        <div class="profile-name" id="view-profile-name">User</div>
+                        <button id="btn-edit-profile" class="profile-edit-btn">Edit</button>
+                    </div>
+
+                    <!-- Bank Section -->
+                    <div class="profile-section-account">
+                        <div class="account-row">
+                            <span class="detail-label">Bank Name</span>
+                            <span class="detail-value" id="view-bank-name">Not Set</span>
+                        </div>
+                        <div class="account-row" style="margin-top: 8px;">
+                            <span class="detail-label">Account Number</span>
+                            <span class="detail-value" id="view-account-number"
+                                style="font-size: 1.2em; letter-spacing: 1px;"></span>
+                        </div>
+                    </div>
+
+                    <!-- Personal Details List -->
+                    <div class="profile-details-list">
+                        <div class="detail-row">
+                            <span class="detail-label">Business Name</span>
+                            <span class="detail-value" id="view-business-name">Not Set</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Mobile Number</span>
+                            <span class="detail-value" id="view-phone-number">Not Set</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Account Name</span>
+                            <span class="detail-value" id="view-account-name">Not Set</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Email</span>
+                            <span class="detail-value" id="view-email">user@example.com</span>
+                        </div>
+                    </div>
+
+                    <!-- Communication Channel Section -->
+                    <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #333;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="color: #888; font-size: 14px;">Telegram Bot</span>
+                            <div id="telegram-connect-container">
+                                <button id="btn-connect-telegram" class="btn-primary"
+                                    style="padding: 0.4rem 1rem; font-size: 0.85rem;">
+                                    Connect Bot
+                                </button>
+                                <span id="telegram-connected-badge" class="hidden"
+                                    style="color: #4CAF50; font-weight: 500; font-size: 0.9rem;">
+                                    ✓ Active
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Edit Form (Hidden by default) -->
+                <div id="profile-edit-form" class="settings-section hidden">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                        <h3>Edit Profile</h3>
+                        <button id="btn-cancel-edit" class="btn-secondary">Cancel</button>
+                    </div>
+
+                    <form id="business-profile-form" class="auth-form" style="margin-bottom: 2rem;">
+                        <div class="form-group">
+                            <label for="businessName">Business Name</label>
+                            <input type="text" id="businessName"
+                                placeholder="What should the AI call your business? (e.g., Kiosk Ventures)" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="businessPhone">Business Phone Number</label>
+                            <input type="tel" id="businessPhone"
+                                placeholder="Your business contact number (e.g., +234 801 234 5678)">
+                        </div>
+
+                        <div class="context-editor-container">
+                            <div class="context-label">
+                                📚 Business Knowledge Base (Context & Prices)
+                            </div>
+                            <textarea id="businessContext" placeholder="Tell the AI about your business so it can help customers:
+
+Products & Prices:
+- Product Name: Price (e.g., Sneakers: ₦25,000)
+- Include sizes/variants if applicable
+
+Policies:
+- Return policy (e.g., 7-day returns)
+- Delivery info (e.g., Free shipping above ₦50k)
+- Payment methods accepted
+
+Example:
+- Men's Sneakers: ₦25,000 (Sizes 40-45 available)
+- Women's Bags: ₦15,000 - ₦30,000
+- Returns: Accepted within 7 days with receipt
+- Delivery: Lagos same-day, Other states 2-3 days
+- Payment: Cash, Transfer, Card accepted"></textarea>
+
+                            <div class="context-tips">
+                                <strong>💡 Pro Tip:</strong> The AI uses this to answer customer questions. Be specific
+                                about prices! <br>
+                                Use <code>- Item: Price</code> format for best results.
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-primary" style="margin-top: 1rem;">Save Profile</button>
+                    </form>
+
+                    <h3>Bank Account Details</h3>
+                    <form id="bank-details-form" class="auth-form">
+                        <div class="form-group">
+                            <label for="bankName">Bank Name</label>
+                            <input type="text" id="bankName" placeholder="e.g. GTBank" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="accountNumber">Account Number</label>
+                            <input type="text" id="accountNumber" placeholder="e.g. 0123456789" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="accountName">Account Name</label>
+                            <input type="text" id="accountName" placeholder="e.g. Kiosk Ventures" required>
+                        </div>
+                        <button type="submit" class="btn-primary" style="margin-top: 1rem;">Save Bank Details</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Customer Modal -->
+    <!-- Add Customer Modal -->
+    <div id="add-customer-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Customer</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="add-customer-form">
+                <div class="modal-body">
+                    <div class="auth-form">
+                        <div class="form-group">
+                            <label for="customerName">Full Name</label>
+                            <input type="text" id="customerName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customerPhone">Phone Number</label>
+                            <input type="tel" id="customerPhone" placeholder="+234..." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customerEmail">Email (Optional)</label>
+                            <input type="email" id="customerEmail">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary close-modal-btn">Cancel</button>
+                    <button type="submit" class="btn-primary">Add Customer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Create Order Modal -->
+    <div id="create-order-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Record New Order</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="create-order-form">
+                <div class="modal-body">
+                    <p style="margin-bottom: 1rem; color: var(--color-text-secondary); font-size: 0.9em;">
+                        Record an order manually or from a chat conversation.
+                    </p>
+                    <div class="auth-form">
+                        <div class="form-group">
+                            <label for="orderCustomerName">Customer Name</label>
+                            <input type="text" id="orderCustomerName" placeholder="Search or type name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="orderAmount">Amount (₦)</label>
+                            <input type="number" id="orderAmount" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="orderStatus">Status</label>
+                            <select id="orderStatus"
+                                style="padding: 0.75rem; border-radius: var(--radius-md); border: 2px solid var(--color-bg-panel);">
+                                <option value="pending">Pending</option>
+                                <option value="paid">Paid</option>
+                                <option value="completed">Completed</option>
+                                <option value="cancelled">Cancelled</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="orderNotes">Notes / Items</label>
+                            <textarea id="orderNotes" rows="3" placeholder="e.g. 1x Sneakers, Size 42"
+                                style="padding: 0.75rem; border-radius: var(--radius-md); border: 2px solid var(--color-bg-panel);"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary close-modal-btn">Cancel</button>
+                    <button type="submit" class="btn-primary">Record Order</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="notification" class="notification"></div>
+
+    <!-- Sidebar Overlay -->
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+    <!-- Scripts -->
+    <script src="js/app.js"></script>
+
+    <!-- Telegram Bot Connect Modal -->
+    <div id="telegram-modal" class="modal">
+        <div class="modal-content" style="max-width: 600px;">
+            <div class="modal-header">
+                <h2>Connect Your Telegram Bot</h2>
+                <button class="close-modalTelegram close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="guide-steps"
+                    style="margin-bottom: 2rem; background: #f8f9fa; padding: 1.5rem; border-radius: 8px;">
+                    <h3 style="font-size: 1rem; margin-bottom: 1rem; color: #333;">How to create your bot:</h3>
+                    <ol style="padding-left: 1.2rem; color: #555; line-height: 1.6;">
+                        <li style="margin-bottom: 0.5rem;">Open Telegram and search for <strong>@BotFather</strong>.
+                        </li>
+                        <li style="margin-bottom: 0.5rem;">Send <code
+                                style="background: #eee; padding: 2px 4px; border-radius: 4px;">/newbot</code>.</li>
+                        <li style="margin-bottom: 0.5rem;">Follow the prompts to name your bot.</li>
+                        <li style="margin-bottom: 0.5rem;">Copy the <strong>Bot Token</strong> provided.</li>
+                        <li style="margin-bottom: 0.5rem;">Note your bot's <strong>@username</strong>.</li>
+                    </ol>
+
+                    <div
+                        style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #e5e7eb; text-align: left;">
+                        <span style="font-size: 0.9em; color: #666;">Confused? </span>
+                        <a href="https://core.telegram.org/bots#6-botfather" target="_blank"
+                            style="color: #2563eb; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.4rem; margin-left: 0.5rem;">
+                            📖 Telegram Bot Guide
+                        </a>
+                    </div>
+                </div>
+
+                <form id="telegram-connect-form">
+                    <div class="form-group">
+                        <label for="telegramBotToken">Bot Token</label>
+                        <input type="text" id="telegramBotToken" placeholder="1234567890:AAH..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telegramBotUsername">Bot Username</label>
+                        <input type="text" id="telegramBotUsername" placeholder="@my_business_bot" required>
+                    </div>
+
+                    <!-- Connection Status and Troubleshooting -->
+                    <div id="telegram-status-check" class="hidden"
+                        style="margin-top: 1rem; padding: 1rem; background: #eef2ff; border-radius: 8px; border: 1px solid #c7d2fe;">
+                        <h4 style="font-size: 0.9rem; margin-bottom: 0.5rem; color: #3730a3;">System Health Check:</h4>
+                        <p style="font-size: 0.85rem; color: #4338ca; line-height: 1.4; margin-bottom: 0.8rem;">
+                            If your bot is not replying, click below to verify your Render configuration:
+                        </p>
+                        <a id="link-diagnostic" href="#" target="_blank"
+                            style="font-size: 0.85rem; color: #1e40af; font-weight: 600; text-decoration: underline;">
+                            Verify Webhook Connection →
+                        </a>
+                        <p style="font-size: 0.75rem; color: #6b7280; margin-top: 0.5rem;">
+                            * If the link above shows an error, your WEBHOOK_BASE_URL is not set correctly in Render.
+                        </p>
+                    </div>
+
+                    <div class="modal-footer" style="justify-content: space-between; margin-top: 1.5rem;">
+                        <button type="button" id="btn-disconnect-telegram" class="btn-secondary"
+                            style="color: #ef4444; border-color: #ef4444;">Disconnect</button>
+                        <div style="display: flex; gap: 10px;">
+                            <button type="button" class="btn-secondary close-modalTelegram-btn">Cancel</button>
+                            <button type="submit" class="btn-primary">Connect Bot</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- View Order Modal -->
+    <div id="view-order-modal" class="modal">
+        <div class="modal-content" style="max-width: 600px;">
+            <div class="modal-header">
+                <h2>Order Details</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div id="order-details-content" class="modal-body">
+                <!-- Content loaded via JS -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary close-modal">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Customer Modal -->
+    <div id="view-customer-modal" class="modal">
+        <div class="modal-content" style="max-width: 700px;">
+            <div class="modal-header">
+                <h2>Customer Profile</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div id="customer-details-content" class="modal-body">
+                <!-- Content loaded via JS -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary close-modal">Close</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
