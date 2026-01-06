@@ -353,7 +353,7 @@ KioskAI Team
     </table>
     ''' if orders_summary else '<p>No orders recorded today.</p>'}
 
-    <p style="margin-top: 30px;"><a href="https://kioskai-app.onrender.com" style="background: #1B6EA8; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Go to Dashboard</a></p>
+    <p style="margin-top: 30px;"><a href="{settings.WEBHOOK_BASE_URL or '#'}" style="background: #1B6EA8; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Go to Dashboard</a></p>
     
     <p style="color: #77808B; font-size: 12px; margin-top: 30px;">Best regards,<br>KioskAI Team</p>
 </body>
